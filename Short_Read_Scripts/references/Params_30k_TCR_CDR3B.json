@@ -1,0 +1,9 @@
+{
+    "N_Processes": 1,
+    "Batch_Size": 200000,
+    "Reference_File": "./references/All_30k_Assembled_TCR_Sequences.csv",
+    "Constant_Flank": "GAGATCTCCCACACC",
+    "Barcode_Offset": 57,
+    "Window_Size": 90,
+    "UMI_Size": 8
+}

@@ -1,0 +1,17 @@
+{"n_processes":4,
+ "TRAV_dict":"./references_3810/TRAV_dict_noOH.csv",
+ "TRBV_dict":"./references_3810/TRBV_dict_noOH.csv",
+ "TRAV_dict_unique":"./references_3810/TRAV_dict_3.csv",
+ "TRBV_dict_unique":"./references_3810/TRBV_dict_4.csv",
+ "CDR3_dict":"./references_3810/CDR3_dict_2.csv",
+ "batch_size":10000,
+ "Size_Cutoff":8500,
+ "CDR3_search_window":150,
+ "reference_TCR_sheet":"./references_3810/All_3800_CDR3_table.csv",
+ "TRAC_substrings":[["AGAGACTCTAAATCC", 33], 
+                    ["TCTCAAACAAATGTG", 84],
+                    ["ACTGTGCTAGACATG", 138]],
+ "TRBC_substrings":[["AAGGCCACACTGGTG", 75],
+                    ["CAGCCCCTCAAGGAG", 180],
+                    ["TCGGCCACCTTCTGG", 246]]
+}
