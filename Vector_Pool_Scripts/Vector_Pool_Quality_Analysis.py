@@ -34,21 +34,12 @@ def annotate_TRAV_or_TRBV(generator, v_dict_unique_path, trav_or_trbv, origin_fl
         A generator that yields matched V alleles for each read, or None if no match is found
     """
     v_dict_unique = pd.read_csv(v_dict_unique_path)  # unique substring list
-    match_locations = []
 
     for sequence in tqdm(generator):
-        #rotate to orient origin
-        origin_pos = sequence.find(origin_flank)
+        
+        # If the reverse complement is found, take the reverse complement of the sequence
         if str(Seq(origin_flank).reverse_complement()) in sequence:
-            # If the reverse complement is found, rotate the sequence to that position
             sequence = str(Seq(sequence).reverse_complement())
-            origin_pos = sequence.find(origin_flank)
-        
-        if len(sequence) < search_cutoff or origin_pos == -1:
-            continue
-        
-        sequence = sequence[origin_pos:] + sequence[:origin_pos]        
-        sequence = sequence[:search_cutoff]
         
         matched_v = None
         #TRAV/TRBV ANALYSIS
@@ -57,11 +48,9 @@ def annotate_TRAV_or_TRBV(generator, v_dict_unique_path, trav_or_trbv, origin_fl
             v_allele_unique = row_unique[trav_or_trbv]
             barcode_unique = row_unique[f'{trav_or_trbv}_barcode']
             
-            # Find the position of the barcode in the sequence
-            barcode_pos = sequence.find(barcode_unique)
-            if barcode_pos != -1 and barcode_pos <= 1000:
+            if barcode_unique in sequence:
                 matched_v = v_allele_unique
-                match_locations.append(barcode_pos)
+                break
         
         #if matching failed, move to the next sequence.
         if matched_v is None:
@@ -96,7 +85,7 @@ if __name__ == '__main__':
     parser.add_argument('--v_dict_unique', type=str, required=True, help='Path to the unique V gene dictionary. Use TRBV barcodes for Step 1 and TRAV barcodes for Step 2.')
     parser.add_argument('--trav_or_trbv', type=str, required=True, choices=['TRAV', 'TRBV'], help='Specify TRAV or TRBV. Step 1 Vectors are TRBV, and Step 2 Vectors are TRAV.')
     parser.add_argument('--title', type=str, required=True, help='Title to place at top of plot and to save as')
-    parser.add_argument('--search_cutoff', type=int, default=600, help='Search cutoff length')
+    parser.add_argument('--search_cutoff', type=int, default=None, help='Search cutoff length')
     args = parser.parse_args()
 
     # Generate sequences from the fastq file
