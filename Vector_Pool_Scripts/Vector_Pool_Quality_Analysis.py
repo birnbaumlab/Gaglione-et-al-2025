@@ -21,7 +21,7 @@ def generate_sequences(file_path):
                 yield str(record.seq)
 
 
-def annotate_TRAV_or_TRBV(generator, v_dict_unique_path, trav_or_trbv, origin_flank, search_cutoff):
+def annotate_TRAV_or_TRBV(generator, v_dict_unique_path, trav_or_trbv, origin_flank):
     """
     Annotate TRAV or TRBV sequences from the generator.
     params:
@@ -85,7 +85,6 @@ if __name__ == '__main__':
     parser.add_argument('--v_dict_unique', type=str, required=True, help='Path to the unique V gene dictionary. Use TRBV barcodes for Step 1 and TRAV barcodes for Step 2.')
     parser.add_argument('--trav_or_trbv', type=str, required=True, choices=['TRAV', 'TRBV'], help='Specify TRAV or TRBV. Step 1 Vectors are TRBV, and Step 2 Vectors are TRAV.')
     parser.add_argument('--title', type=str, required=True, help='Title to place at top of plot and to save as')
-    parser.add_argument('--search_cutoff', type=int, default=None, help='Search cutoff length')
     args = parser.parse_args()
 
     # Generate sequences from the fastq file
@@ -94,7 +93,7 @@ if __name__ == '__main__':
     origin_flank_options = {'TRAV':'TGCTGAAGCAGGCCGGTG', 'TRBV':'ATTGTTAGGTAATCGTCA'}
     origin_flank = origin_flank_options[args.trav_or_trbv]
     # Annotate TRAV or TRBV
-    read_list = list(annotate_TRAV_or_TRBV(generator, args.v_dict_unique, args.trav_or_trbv, origin_flank, args.search_cutoff))
+    read_list = list(annotate_TRAV_or_TRBV(generator, args.v_dict_unique, args.trav_or_trbv, origin_flank))
     
     # Create vector plot
     make_vector_plot(read_list, args.title)
