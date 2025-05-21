@@ -10,8 +10,8 @@
  "CDR3B_Barcode_Size": 48,
 
  "Size_Cutoff":8500,
- "CDR3_search_window":150,
  
+ "CDR3_search_window":150,
  "TRAV_dict":"./references_30k/TRAV_dict_noOH.csv",
  "TRBV_dict":"./references_30k/TRBV_dict_noOH.csv",
  "TRAV_dict_unique":"./references_30k/TRAV_dict_3.csv",
