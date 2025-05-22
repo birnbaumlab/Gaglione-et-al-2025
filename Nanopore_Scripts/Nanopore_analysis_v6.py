@@ -62,7 +62,7 @@ def create_cdr3a_cdr3b_barcode_dicts(params):
                 continue
             cdr3_barcode = seq[flank_pos + params[f'{bc_type}_Barcode_Offset'] : flank_pos + params[f'{bc_type}_Barcode_Offset'] + params[f'{bc_type}_Barcode_Size']]
             cdr3_barcode = cdr3_barcode.upper()
-            cdr3_barcode_dict[cdr3_barcode] = str(index + 1)
+            cdr3_barcode_dict[cdr3_barcode] = index + 1
 
         n_unique = np.unique(np.array(list(cdr3_barcode_dict.keys())))
         if n_unique.size != len(cdr3_barcode_dict):
