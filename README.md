@@ -8,6 +8,7 @@ Contains the following directories:
 - **Vector_Pool_Scripts**: Scripts that were used to analyze sequencing data from the TRBV-TRAC and TRBC-TRAV vector pools to confirm vector pool quality/uniformity.
 - **Overhang_Generation**: Jupyter Notebooks that contain the MCMC sampling pipeline which was originally used to generate overhang sets for the TCRAFT vector pools.
 - **10X_Analysis**: Code used to analyze 10X single cell sequencing data.
+- **Protocols**: Protocols and useful reference templates for performing the TCRAFT assembly workflow.
 
 ## Authors
 Rachit Mukkamala and Stephanie Gaglione
